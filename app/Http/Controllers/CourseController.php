@@ -6,6 +6,7 @@ use App\DTO\CourseData;
 use App\Models\Course;
 use App\Repositories\CourseRepository;
 use App\Services\CourseService;
+use App\ViewModels\GetCourseReportViewModel;
 use Illuminate\Http\JsonResponse;
 use Illuminate\Http\Request;
 use Illuminate\Http\Resources\Json\JsonResource;
@@ -47,25 +48,6 @@ class CourseController extends Controller
         
     }
     public function stats(){
-        $courses = Course::all();
-        $numCourses = $courses->count();
-        $numEgyptianCourses = $courses->filter(function ($course) {
-            return str_starts_with($course->phone, '+20');
-        })->count();
-
-        $mostBookedCourses = DB::table('course_student')
-            ->select('course_id', DB::raw('count(*) as total'))
-            ->groupBy('course_id')
-            ->orderBy('total', 'desc')
-            ->limit(5)
-            ->get();
-
-        $statistics = [
-            'numCourses' => $numCourses,
-            'numEgyptianCourses' => $numEgyptianCourses,
-            'mostBookedCourses' => $mostBookedCourses,
-        ];
-
-        return response()->json($statistics);
+        return new GetCourseReportViewModel();
     }
 }
