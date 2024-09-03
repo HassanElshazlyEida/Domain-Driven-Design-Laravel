@@ -22,8 +22,17 @@ class CourseController extends Controller
     }
     public function index(Request $request): JsonResponse
     {
-        $courses = $this->courseRepository->findByPhoneAndTitle($request->input('phone'), $request->input('title'));        
+        // Repository Pattern
         
+        // $courses = $this->courseRepository->findByPhoneAndTitle($request->phone, $request->title);        
+        
+        // OR Query Builder
+
+        $courses = Course::query()
+        ->wherePhoneAndTitle($request->phone, $request->title)
+        ->get();
+
+
         return response()->json($courses);
     }
     public function store(Request $request, CourseService $courseService): JsonResponse 

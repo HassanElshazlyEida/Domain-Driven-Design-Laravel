@@ -2,6 +2,7 @@
 
 namespace App\Models;
 
+use App\QueryBuilder\CourseBuilder;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 
@@ -19,4 +20,10 @@ class Course extends Model
     public function lessons(){
         return $this->hasMany(Lesson::class);
     }
+
+    public function newEloquentBuilder($query): CourseBuilder
+    {
+        return new CourseBuilder($query);
+    }
+
 }
