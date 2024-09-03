@@ -3,6 +3,7 @@ namespace App\Services;
 
 use App\DTO\CourseData;
 use App\Models\Course;
+use App\ValueObjects\PhoneNumber;
 use Exception;
 use Illuminate\Support\Collection;
 use Illuminate\Support\Facades\DB;
@@ -21,6 +22,7 @@ class CourseService {
         }catch(Exception $e){
             throw $e;
             DB::rollBack();
+            throw $e;
             return false;
         }
     }
@@ -31,12 +33,12 @@ class CourseService {
     public function assignStudents(Course $course, Collection $student_ids): void{
         $course->students()->attach($student_ids);
     }
-    public function handlePhoneNumber(Course $course,  $phone): void {
-        if ($this->isEgyptian($phone)) {
+    public function handlePhoneNumber(Course $course, PhoneNumber $phone): void {
+        if ($phone->isEgyptian()) {
             // Perform some action if the phone number is Egyptian
         }
 
-        if ($this->hasCountryCode($phone)) {
+        if ($phone->hasCountryCode()) {
             // Perform some action if the phone number has a country code
         }
 
@@ -44,11 +46,5 @@ class CourseService {
         $course->phone = $phone;
         $course->save();
     }
-    public function isEgyptian($number): bool {
-        return str_starts_with($number, '+20');
-    }
-
-    public function hasCountryCode($number): bool {
-        return str_starts_with($number, '+');
-    }
+    
 }
