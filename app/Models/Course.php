@@ -2,9 +2,9 @@
 
 namespace App\Models;
 
-use App\QueryBuilder\CourseBuilder;
-use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
+use App\Domain\Course\QueryBuilder\CourseBuilder;
+use Illuminate\Database\Eloquent\Factories\HasFactory;
 
 class Course extends Model
 {

@@ -1,13 +1,14 @@
 <?php
 
-namespace App\Actions;
-use App\DTO\CourseData;
-use App\Models\Course;
-use App\ValueObjects\PhoneNumber;
+namespace App\Domain\Course\Actions;
+
 use Exception;
-use Illuminate\Support\Collection;
+use App\Models\Course;
 use Illuminate\Support\Facades\DB;
-use Illuminate\Support\Facades\Mail;
+use App\Domain\Course\DTO\CourseData;
+use App\Domain\Course\ValueObjects\PhoneNumber;
+
+
 
 class CreateCourseAction
 {

@@ -1,17 +1,17 @@
 <?php
 
-namespace App\Http\Controllers;
+namespace App\Domain\Course\Controllers;
 
-use App\DTO\CourseData;
 use App\Models\Course;
-use App\Repositories\CourseRepository;
-use App\Services\CourseService;
-use App\ViewModels\GetCourseReportViewModel;
-use Illuminate\Http\JsonResponse;
 use Illuminate\Http\Request;
-use Illuminate\Http\Resources\Json\JsonResource;
-use Illuminate\Support\Facades\DB;
+use Illuminate\Http\JsonResponse;
+use App\Http\Controllers\Controller;
+use App\Domain\Course\DTO\CourseData;
 use Illuminate\Support\Facades\Validator;
+use App\Domain\Course\Services\CourseService;
+use App\Domain\Course\Repositories\CourseRepository;
+use App\Domain\Course\ViewModels\GetCourseReportViewModel;
+
 
 class CourseController extends Controller
 {

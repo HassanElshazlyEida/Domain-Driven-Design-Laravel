@@ -1,10 +1,12 @@
 <?php
-namespace App\Services;
+namespace App\Domain\Course\Services;
 
 use App\Models\Course;
-use App\DTO\CourseData;
-use App\Actions\NotifyUserAction;
-use App\Actions\CreateCourseAction;
+use App\Domain\Course\DTO\CourseData;
+use App\Domain\Course\Actions\NotifyUserAction;
+use App\Domain\Course\Actions\CreateCourseAction;
+
+
 
 
 class CourseService {

@@ -1,6 +1,6 @@
 <?php
 
-namespace App\ViewModels;
+namespace App\Domain\Course\ViewModels;
 
 use App\Models\Course;
 use Illuminate\Support\Facades\DB;

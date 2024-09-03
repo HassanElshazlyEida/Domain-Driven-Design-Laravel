@@ -1,6 +1,6 @@
 <?php
 
-namespace App\QueryBuilder;
+namespace App\Domain\Course\QueryBuilder;
 
 use Illuminate\Database\Eloquent\Builder;
 

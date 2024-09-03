@@ -1,11 +1,13 @@
 <?php
-namespace App\DTO;
-use App\DTO\LessonData;
-use App\ValueObjects\PhoneNumber;
+namespace App\Domain\Course\DTO;    
+
+
 use Illuminate\Http\Request;
-use Illuminate\Support\Collection;
 use Spatie\LaravelData\Data;
 use Spatie\LaravelData\Lazy;
+use Illuminate\Support\Collection;
+use App\Domain\Course\DTO\LessonData;
+use App\Domain\Course\ValueObjects\PhoneNumber;
 
 class CourseData extends Data {
     public PhoneNumber $phone;

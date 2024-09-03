@@ -1,6 +1,6 @@
 <?php
 
-namespace App\Repositories;
+namespace App\Domain\Course\Repositories;
 
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;

@@ -1,6 +1,6 @@
 <?php
 
-namespace App\DTO;
+namespace App\Domain\Course\DTO;
 
 class LessonData
 {
