@@ -9,7 +9,7 @@ use App\Services\CourseService;
 use Illuminate\Http\JsonResponse;
 use Illuminate\Http\Request;
 use Illuminate\Http\Resources\Json\JsonResource;
-
+use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Validator;
 
 class CourseController extends Controller
@@ -23,7 +23,7 @@ class CourseController extends Controller
     public function index(Request $request): JsonResponse
     {
         // Repository Pattern
-        
+
         // $courses = $this->courseRepository->findByPhoneAndTitle($request->phone, $request->title);        
         
         // OR Query Builder
@@ -45,5 +45,27 @@ class CourseController extends Controller
         }
         return response()->json(['message' => 'Course creation failed'], 500);
         
+    }
+    public function stats(){
+        $courses = Course::all();
+        $numCourses = $courses->count();
+        $numEgyptianCourses = $courses->filter(function ($course) {
+            return str_starts_with($course->phone, '+20');
+        })->count();
+
+        $mostBookedCourses = DB::table('course_student')
+            ->select('course_id', DB::raw('count(*) as total'))
+            ->groupBy('course_id')
+            ->orderBy('total', 'desc')
+            ->limit(5)
+            ->get();
+
+        $statistics = [
+            'numCourses' => $numCourses,
+            'numEgyptianCourses' => $numEgyptianCourses,
+            'mostBookedCourses' => $mostBookedCourses,
+        ];
+
+        return response()->json($statistics);
     }
 }
