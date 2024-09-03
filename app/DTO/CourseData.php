@@ -8,6 +8,7 @@ class CourseData {
         public readonly ?int $id,
         public readonly string $title,
         public readonly string $description,
+        public readonly string $phone,
         /** @var Collection<LessonData> */
         public readonly Collection $lessons,
 
@@ -22,6 +23,7 @@ class CourseData {
             id: $data['id'] ?? null,
             title: $data['title'],
             description: $data['description'],
+            phone: $data['phone'],
             lessons: $lessons,
             student_ids: collect($data['student_ids'])
         );
