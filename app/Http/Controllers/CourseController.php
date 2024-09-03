@@ -8,10 +8,29 @@ use App\Services\CourseService;
 use Illuminate\Http\JsonResponse;
 use Illuminate\Http\Request;
 use Illuminate\Http\Resources\Json\JsonResource;
+use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Validator;
 
 class CourseController extends Controller
 {
+    public function index(Request $request): JsonResponse
+    {
+        $phone = $request->input('phone');
+        $title = $request->input('title');
+
+        $courses = DB::table('courses')
+            ->where(function ($query) use ($phone, $title) {
+                if ($phone) {
+                    $query->where('phone', 'like', '%' . $phone . '%');
+                }
+                if ($title) {
+                    $query->where('title', 'like', '%' . $title . '%');
+                }
+            })
+            ->get();
+
+        return response()->json($courses);
+    }
     public function store(Request $request, CourseService $courseService): JsonResponse 
     {
         if(Validator::make($request->all(), CourseData::rules())->fails()){
