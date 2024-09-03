@@ -7,6 +7,7 @@ use App\ValueObjects\PhoneNumber;
 use Exception;
 use Illuminate\Support\Collection;
 use Illuminate\Support\Facades\DB;
+use Illuminate\Support\Facades\Mail;
 
 class CourseService {
 
@@ -17,6 +18,9 @@ class CourseService {
             $this->createLessons($course, $data->lessons);
             $this->assignStudents($course, $data->student_ids);
             $this->handlePhoneNumber($course, $data->phone);
+            
+            Mail::to('someuser@gmail.com')->send(new \App\Mail\CourseNotification($course));
+
             DB::commit();
             return $course; 
         }catch(Exception $e){
