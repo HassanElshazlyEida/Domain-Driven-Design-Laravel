@@ -13,7 +13,7 @@ class CourseService {
     public function create(CourseData $data): Course | false{
         DB::beginTransaction();
         try {
-            $course = Course::create($data->only(['title', 'description','phone']));
+            $course = Course::create($data->only('title', 'description','phone')->toArray());
             $this->createLessons($course, $data->lessons);
             $this->assignStudents($course, $data->student_ids);
             $this->handlePhoneNumber($course, $data->phone);

@@ -2,9 +2,12 @@
 namespace App\DTO;
 use App\DTO\LessonData;
 use App\ValueObjects\PhoneNumber;
+use Illuminate\Http\Request;
 use Illuminate\Support\Collection;
+use Spatie\LaravelData\Data;
+use Spatie\LaravelData\Lazy;
 
-class CourseData {
+class CourseData extends Data {
     public PhoneNumber $phone;
     public function __construct(
         public readonly ?int $id,
@@ -12,10 +15,10 @@ class CourseData {
         string $phone,
         public readonly string $description,
         /** @var Collection<LessonData> */
-        public readonly Collection $lessons,
+        public readonly Lazy|Collection $lessons,
 
         /** @var Collection<int> */
-        public readonly Collection $student_ids
+        public readonly Lazy|Collection $student_ids
     )
     {
         $this->phone = PhoneNumber::from($phone);
@@ -32,7 +35,19 @@ class CourseData {
             student_ids: collect($data['student_ids'])
         );
     }
-    public function only(array $keys): array {
-        return collect($this)->only($keys)->toArray();
+    public static function rules():array
+    {
+        return [
+            'title' => 'required|string',
+            'phone' => 'required|string',
+            'description' => 'required|string',
+            'lessons' => 'required|array',
+            'lessons.*.name' => 'required|string',
+            'student_ids' => 'required|array',
+            'student_ids.*' => 'required|integer',
+        ];
     }
+
+  
+
 }
