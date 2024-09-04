@@ -3,7 +3,7 @@
 
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
-use App\Http\Controllers\CourseController;
+
 
 
 /*
@@ -20,6 +20,3 @@ use App\Http\Controllers\CourseController;
 Route::middleware('auth:sanctum')->get('/user', function (Request $request) {
     return $request->user();
 });
-Route::post('/create-course',[CourseController::class,'store']);
-Route::get('/courses',[CourseController::class,'index']);
-Route::get('/courses/stats',[CourseController::class,'stats']);
