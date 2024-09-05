@@ -9,7 +9,6 @@ use Spatie\LaravelData\WithData;
 
 class Sequence extends BaseModel
 {
-    use WithData;
     use HasUser;
     protected $fillable = [
         'title',

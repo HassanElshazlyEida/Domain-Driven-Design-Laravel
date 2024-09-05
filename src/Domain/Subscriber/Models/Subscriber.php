@@ -7,11 +7,13 @@ use Illuminate\Database\Eloquent\Relations\BelongsTo;
 use Illuminate\Database\Eloquent\Relations\BelongsToMany;
 use Spatie\LaravelData\WithData;
 use Domain\Shared\Models\Concerns\HasUser;
+use Domain\Subscriber\DataTransferObjects\SubscriberData;
 
 class Subscriber extends BaseModel
 {
     use WithData;
-    use HasUser;
+    use HasUser;  
+    protected $dataClass = SubscriberData::class;
     protected $fillable = [
         'email',
         'first_name',
