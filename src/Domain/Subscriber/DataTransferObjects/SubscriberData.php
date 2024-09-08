@@ -34,7 +34,7 @@ class SubscriberData extends Data
 
     public static function fromRequest(Request $request): self
     {
-
+      
         return self::from([
             ...$request->all(),
             'tags' => TagData::collection(Tag::whereIn('id', $request->collect('tag_ids'))->get()),
@@ -46,7 +46,7 @@ class SubscriberData extends Data
         return self::from([
             ...$subscriber->toArray(),
             'tags' => Lazy::whenLoaded('tags', $subscriber, fn () => TagData::collection($subscriber->tags)),
-            'form' => Lazy::whenLoaded('form', $subscriber, fn () => FormData::from($subscriber->form)),
+            'form' => Lazy::whenLoaded('form', $subscriber, fn () => ($subscriber->form?->id ?? null)?FormData::from($subscriber->form):null),
             'full_name' => $subscriber->full_name,
         ]);
     }

@@ -5,6 +5,7 @@ use Illuminate\Support\Facades\Route;
 use Illuminate\Foundation\Application;
 use App\Http\Controllers\ProfileController;
 use App\Http\Web\Controllers\Subscriber\SubscriberController;
+use App\Http\Web\Controllers\Subscriber\ImportSubscribersController;
 
 
 /*
@@ -33,6 +34,8 @@ Route::get('/dashboard', function () {
 
 Route::middleware('auth')->group(function () {
     Route::resource('subscribers', SubscriberController::class);
+    Route::post('subscribers/import', ImportSubscribersController::class);
+
     Route::get('/profile', [ProfileController::class, 'edit'])->name('profile.edit');
     Route::patch('/profile', [ProfileController::class, 'update'])->name('profile.update');
     Route::delete('/profile', [ProfileController::class, 'destroy'])->name('profile.destroy');
