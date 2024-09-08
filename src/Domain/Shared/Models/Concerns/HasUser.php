@@ -13,8 +13,8 @@ trait HasUser
         return $this->belongsTo(User::class);
     }
 
-    protected static function booted()
-    {
-        static::addGlobalScope(new UserScope());
-    }
+    // protected static function booted()
+    // {
+    //     static::addGlobalScope(new UserScope());
+    // }
 }

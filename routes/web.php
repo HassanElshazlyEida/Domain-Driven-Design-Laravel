@@ -6,6 +6,7 @@ use Illuminate\Foundation\Application;
 use App\Http\Controllers\ProfileController;
 use App\Http\Web\Controllers\Subscriber\SubscriberController;
 
+
 /*
 |--------------------------------------------------------------------------
 | Web Routes
