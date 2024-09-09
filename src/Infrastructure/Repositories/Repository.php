@@ -19,9 +19,9 @@ abstract class Repository implements RepositoryInterface
         return   $this->query->get();
 	}
 
-	public function find(string $id): ?object
+	public function find(string $id,array $with = []): ?object
 	{
-		return $this->query->findOrFail($id);
+		return $this->query->with($with)->findOrFail($id);
 	}
 
 	public function create(object $entity):object

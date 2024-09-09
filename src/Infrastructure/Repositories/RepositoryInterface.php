@@ -12,7 +12,7 @@ use Illuminate\Database\Eloquent\Collection;
 interface RepositoryInterface
 {
     public function all(): Collection;
-    public function find(string $id): ?object;
+    public function find(string $id,array $with = []): ?object;
     public function create(object $entity): object;
     public function update(string $id, object $entity): object;
     public function delete(string $id): void;
