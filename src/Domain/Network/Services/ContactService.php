@@ -39,4 +39,20 @@ final class ContactService
         );
     }
 
+    public function create(ContactEntity $contact): ContactEntity
+    {
+        $contact = $this->repo->create($contact);
+        return $contact->getData();
+    }
+
+    public function update(string $id, ContactEntity $contact): void
+    {
+        $this->repo->update($id, $contact);
+    }
+
+    public function delete(string $id): void
+    {
+        $this->repo->delete($id);
+    }
+
 }

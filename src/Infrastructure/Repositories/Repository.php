@@ -34,11 +34,11 @@ abstract class Repository implements RepositoryInterface
         );
 	}
 
-	public function update($id, object $entity):object
+	public function update($id, object $entity):bool
 	{
         return $this->database->transaction(
             callback: function () use ($entity,$id) {
-                return $this->query->where('id','=',$id)->update($entity->toArray());
+                return $this->query->where('id','=',$id)->first()?->update($entity->toArray());
             },
             attempts: 3
         );

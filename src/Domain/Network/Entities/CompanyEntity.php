@@ -10,13 +10,14 @@ class CompanyEntity extends Data
 {
 
     public function __construct(
+        public readonly ?string $id = null,
         public readonly string $name,
-        public readonly ?string $logo,
-        public readonly ?string $website,
-        public readonly ?string $industry,
-        public readonly ?string $email,
-        public readonly ?string $description,
-        public readonly ?array $socials,
+        public readonly ?string $logo = null,
+        public readonly ?string $website = null,
+        public readonly ?string $industry = null,
+        public readonly ?string $email = null,
+        public readonly ?string $description = null,
+        public readonly ?array $socials = null,
         public readonly int $user_id,
     )
     {

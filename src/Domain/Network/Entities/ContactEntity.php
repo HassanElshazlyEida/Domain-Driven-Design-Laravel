@@ -11,23 +11,26 @@ use Spatie\LaravelData\Attributes\WithCast;
 use Spatie\LaravelData\Casts\DateTimeInterfaceCast;
 use Spatie\LaravelData\Data;
 use Spatie\LaravelData\Lazy;
+use Spatie\LaravelData\Attributes\Computed;
 
 final class ContactEntity extends Data
 {
+   
 
     public function __construct(
         public readonly string $name,
         public readonly EmailObject $email,
-        public readonly ?array $socials,
-        public readonly ?string $role,
-        public readonly ?string $pronouns,
+        public readonly ?array $socials = null,
+        public readonly ?string $role = null,
+        public readonly ?string $pronouns = null,
         #[WithCast(DateTimeInterfaceCast::class, format: "Y-m-d H:i:s")]
-        public readonly ?Carbon $birthday,
-        public readonly null|Lazy|CompanyEntity $company,
+        public readonly ?Carbon $birthday = null,
+        public readonly null|Lazy|CompanyEntity $company = null,
+        public readonly ?string $company_id = null,
+        public readonly ?string $user_id,
 
-        // private Company $company,
-        // private User $user
     ) {
+       
     }
     public static function fromRequest(Request $request): self
     {
