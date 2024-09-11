@@ -6,7 +6,7 @@ use Domain\Network\Aggregates\ContactAggregate;
 use Domain\Network\Entities\CompanyEntity;
 use Domain\Network\Entities\ContactEntity;
 use Domain\Network\Repositories\ContactRepository;
-use Illuminate\Database\Eloquent\Collection;
+use Illuminate\Support\Collection ;
 
 final class ContactService
 {
@@ -32,6 +32,7 @@ final class ContactService
             id: $id,
             with : ['company']
         );
+    
         return new ContactAggregate(
            contact:  $contact->getData(),
            company: $contact->company->getData(),

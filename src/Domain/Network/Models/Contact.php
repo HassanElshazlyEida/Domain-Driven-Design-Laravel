@@ -3,6 +3,7 @@
 namespace Domain\Network\Models;
 
 use App\Observers\ContactObserver;
+use Carbon\Carbon;
 use Domain\Network\Entities\ContactEntity;
 use Domain\Shared\Models\User;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
@@ -13,8 +14,10 @@ use Spatie\LaravelData\WithData;
 class Contact extends Model
 {
     use WithData;
-    protected $dataClass = ContactEntity::class;
     use HasFactory;
+
+    protected $dataClass = ContactEntity::class;
+  
 
     protected $fillable = [
         'name',
@@ -28,11 +31,14 @@ class Contact extends Model
     ];
 
     protected $casts = [
+        'birthday' => 'datetime:Y-m-d H:i:s',
         'socials' => 'array',
-        'birthday' => 'datetime',
     ];
 
-    // observer
+    protected static function newFactory(){
+        return \Database\Factories\Network\ContactFactory::new();
+    }
+
     public static function boot()
     {
         parent::boot();
@@ -48,4 +54,5 @@ class Contact extends Model
     {
         return $this->belongsTo(User::class);
     }
+  
 }

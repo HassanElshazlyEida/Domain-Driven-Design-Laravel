@@ -4,7 +4,8 @@ namespace Infrastructure\Repositories;
 
 use Illuminate\Database\Eloquent\Builder;
 use Illuminate\Database\DatabaseManager;
-use Illuminate\Database\Eloquent\Collection;
+use Illuminate\Support\Collection ;
+
 /**
  * @property-read DatabaseManager $database
  * @property-read Builder $query

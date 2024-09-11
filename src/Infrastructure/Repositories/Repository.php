@@ -3,7 +3,7 @@
 namespace Infrastructure\Repositories;
 use Illuminate\Database\DatabaseManager;
 use Illuminate\Database\Eloquent\Builder;
-use Illuminate\Database\Eloquent\Collection;
+use Illuminate\Support\Collection ;
 
 abstract class Repository implements RepositoryInterface
 {

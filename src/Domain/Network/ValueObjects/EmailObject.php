@@ -18,4 +18,8 @@ class EmailObject
     {
         return $this->email;
     }
+    public static function from(string $email): self
+    {
+        return new self($email);
+    }
 }
